@@ -144,6 +144,7 @@ def init_state():
         "screen": "splash", "card": None, "current_expression": None,
         "current_query": None, "saved_cards": [], "last_passage_ids": set(),
         "animate_next": False, "show_share": False, "pending": None,
+        "reroll_count": 0, "show_paywall": False,
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -152,6 +153,10 @@ def init_state():
         st.session_state.anon_id = "anon-" + uuid.uuid4().hex[:12]
 
 init_state()
+
+# Demo paywall: after this many 다른 대사 rerolls, nudge to subscribe.
+REROLL_LIMIT = 3
+SUBSCRIBE_PRICE = "5,900"
 
 
 def _get_api_key() -> str:
@@ -505,6 +510,46 @@ def render_share_sheet(card: dict):
 def _set_pending(kind: str, value: str = ""):
     """Queue a generation request, then rerun so the orb shows during the wait."""
     st.session_state.pending = {"kind": kind, "value": value}
+    # A fresh intent (text/mood/surprise) resets the reroll allowance
+    if kind != "reroll":
+        st.session_state.reroll_count = 0
+
+
+@st.dialog("막간 프리미엄")
+def paywall_dialog():
+    """
+    Demo paywall — appears after REROLL_LIMIT rerolls. This is a DEMO ONLY:
+    the 구독하기 button does not process real payment. Real billing would be a
+    separate integration (e.g. Stripe / 토스페이먼츠) in the production app.
+    """
+    st.markdown(f"""
+    <div style="text-align:center; padding:6px 4px 2px 4px;
+         font-family:'Noto Sans KR',sans-serif;">
+        <div style="font-size:40px; margin-bottom:10px;">🎭</div>
+        <div style="font-family:'Nanum Myeongjo',serif; font-size:21px; font-weight:800;
+             color:#2A2438; margin-bottom:10px;">더 많은 장면을 만나보세요</div>
+        <p style="font-size:14px; color:#6B6456; line-height:1.7; margin:0 0 6px 0;">
+            오늘의 무료 발견을 모두 사용하셨어요.<br/>
+            막간 프리미엄으로 마음에 닿는 장면을<br/>무제한으로 만나보세요.</p>
+        <div style="margin:18px 0 6px 0;">
+            <span style="font-family:'Nanum Myeongjo',serif; font-size:30px; font-weight:800;
+                  color:#2A2438;">₩{SUBSCRIBE_PRICE}</span>
+            <span style="font-size:14px; color:#9A9387;"> / 월</span>
+        </div>
+        <p style="font-size:11.5px; color:#B3ADA0; margin:4px 0 0 0;">
+            언제든 해지할 수 있어요</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if st.button("구독하기", key="subscribe", type="primary", use_container_width=True):
+        st.session_state.show_paywall = False
+        st.session_state.reroll_count = 0
+        st.toast("데모 모드입니다 — 실제 결제는 진행되지 않아요", icon="🎭")
+        st.rerun()
+    if st.button("나중에 할게요", key="paywall_dismiss", use_container_width=True):
+        st.session_state.show_paywall = False
+        st.session_state.reroll_count = 0   # reset so they can keep exploring
+        st.rerun()
 
 
 def screen_main():
@@ -516,6 +561,10 @@ def screen_main():
         if st.button("아카이브", key="to_archive", use_container_width=True):
             go("archive"); st.rerun()
 
+    # Demo paywall overlay (after REROLL_LIMIT rerolls)
+    if st.session_state.get("show_paywall", False):
+        paywall_dialog()
+
     def _submit_text():
         txt = st.session_state.get("makgan_text_input", "").strip()
         if txt:
@@ -525,11 +574,19 @@ def screen_main():
         placeholder="지금 마음, 그대로 적어보세요",
         label_visibility="collapsed", on_change=_submit_text)
 
-    MOODS = ["지침", "결심", "이별", "나다움", "망설임"]
-    cols = st.columns(len(MOODS) + 1)
-    for i, mood in enumerate(MOODS):
+    # mood → (emoji, hover description). The emoji is the button label;
+    # the Korean meaning shows on hover, like the 🎲 button.
+    MOOD_CHIPS = [
+        ("지침",   "😮‍💨", "지침 · 지치고 소진된 마음"),
+        ("결심",   "🔥",   "결심 · 무언가를 정하고 나아가려는 마음"),
+        ("이별",   "💔",   "이별 · 헤어짐, 그리움, 작별의 마음"),
+        ("나다움", "🪞",   "나다움 · 본연의 나를 마주하는 마음"),
+        ("망설임", "🌫️",  "망설임 · 흔들리고 결정하지 못하는 마음"),
+    ]
+    cols = st.columns(len(MOOD_CHIPS) + 1)
+    for i, (mood, emoji, desc) in enumerate(MOOD_CHIPS):
         with cols[i]:
-            if st.button(mood, key=f"mood_{mood}", use_container_width=True):
+            if st.button(emoji, key=f"mood_{mood}", use_container_width=True, help=desc):
                 _set_pending("mood", mood); st.rerun()
     with cols[-1]:
         if st.button("🎲", key="surprise", use_container_width=True, help="무작위 한 장면"):
@@ -576,7 +633,13 @@ def screen_main():
         c1, c2, c3 = st.columns(3)
         with c1:
             if st.button("🔄 다른 대사", key="reroll", use_container_width=True):
-                _set_pending("reroll"); st.rerun()
+                st.session_state.reroll_count += 1
+                if st.session_state.reroll_count > REROLL_LIMIT:
+                    # Demo paywall: nudge to subscribe after a few rerolls
+                    st.session_state.show_paywall = True
+                    st.rerun()
+                else:
+                    _set_pending("reroll"); st.rerun()
         with c2:
             saved = any(c.get("quote_original") == card.get("quote_original")
                         for c in st.session_state.saved_cards)
