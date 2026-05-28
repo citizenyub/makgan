@@ -109,6 +109,26 @@ st.markdown("""
     .archive-empty { text-align:center; padding:50px 20px; color:#B3ADA0;
         font-family:'Noto Sans KR',sans-serif; font-size:13.5px; }
 
+    /* ---- Compact mood pills (small, wrap nicely on mobile) ---- */
+    div[data-testid="stPills"] button {
+        font-family:'Noto Sans KR',sans-serif !important;
+        font-size:12.5px !important; padding:5px 12px !important;
+        min-height:32px !important; border-radius:999px !important;
+        white-space:nowrap !important;
+    }
+    div[data-testid="stPills"] { gap:6px !important; }
+
+    /* ---- Send button (➤) — filled accent, square, aligns with input ---- */
+    div.st-key-send_text button {
+        background:#2A2438 !important; color:#FFFFFF !important;
+        border:1px solid #2A2438 !important; border-radius:14px !important;
+        min-height:48px !important; font-size:17px !important; padding:0 !important;
+    }
+    div.st-key-send_text button:hover {
+        background:#3A3150 !important; border-color:#3A3150 !important; color:#FFFFFF !important;
+        transform:none !important;
+    }
+
     /* ---- Breathing orb loader (centered, calm) ---- */
     .orb-wrap { display:flex; flex-direction:column; align-items:center;
         justify-content:center; padding:70px 20px 60px 20px; }
@@ -144,7 +164,7 @@ def init_state():
         "screen": "splash", "card": None, "current_expression": None,
         "current_query": None, "saved_cards": [], "last_passage_ids": set(),
         "animate_next": False, "show_share": False, "pending": None,
-        "reroll_count": 0, "show_paywall": False,
+        "reroll_count": 0, "show_paywall": False, "pills_nonce": 0,
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -565,30 +585,41 @@ def screen_main():
     if st.session_state.get("show_paywall", False):
         paywall_dialog()
 
-    def _submit_text():
-        txt = st.session_state.get("makgan_text_input", "").strip()
-        if txt:
-            _set_pending("text", txt)
+    # Mobile-first input bar: text field + send button side by side.
+    # (No reliance on Enter-to-send — the button is the trigger.)
+    in_col, send_col = st.columns([5, 1])
+    with in_col:
+        st.text_input(label="지금 마음", key="makgan_text_input",
+            placeholder="지금 마음, 그대로 적어보세요",
+            label_visibility="collapsed")
+    with send_col:
+        if st.button("➤", key="send_text", use_container_width=True, help="보내기"):
+            txt = st.session_state.get("makgan_text_input", "").strip()
+            if txt:
+                _set_pending("text", txt); st.rerun()
 
-    st.text_input(label="지금 마음", key="makgan_text_input",
-        placeholder="지금 마음, 그대로 적어보세요",
-        label_visibility="collapsed", on_change=_submit_text)
-
-    # mood → (emoji, hover description). The emoji is the button label;
-    # the Korean meaning shows on hover, like the 🎲 button.
-    MOOD_CHIPS = [
-        ("지침",   "😮‍💨", "지침 · 지치고 소진된 마음"),
-        ("결심",   "🔥",   "결심 · 무언가를 정하고 나아가려는 마음"),
-        ("이별",   "💔",   "이별 · 헤어짐, 그리움, 작별의 마음"),
-        ("나다움", "🪞",   "나다움 · 본연의 나를 마주하는 마음"),
-        ("망설임", "🌫️",  "망설임 · 흔들리고 결정하지 못하는 마음"),
-    ]
-    cols = st.columns(len(MOOD_CHIPS) + 1)
-    for i, (mood, emoji, desc) in enumerate(MOOD_CHIPS):
-        with cols[i]:
-            if st.button(emoji, key=f"mood_{mood}", use_container_width=True, help=desc):
-                _set_pending("mood", mood); st.rerun()
-    with cols[-1]:
+    # Mood chips as a compact pills row (wraps & stays small on mobile),
+    # plus a small 🎲 surprise button. Emoji is shown; Korean meaning is the value.
+    MOOD_LABELS = {
+        "😮‍💨 지침": "지침",
+        "🔥 결심": "결심",
+        "💔 이별": "이별",
+        "🪞 나다움": "나다움",
+        "🌫️ 망설임": "망설임",
+    }
+    pill_col, dice_col = st.columns([5, 1])
+    with pill_col:
+        picked = st.pills(
+            "지금 마음", options=list(MOOD_LABELS.keys()),
+            selection_mode="single", default=None,
+            label_visibility="collapsed", key=f"mood_pills_{st.session_state.get('pills_nonce', 0)}",
+        )
+        if picked:
+            mood = MOOD_LABELS[picked]
+            # bump the nonce so the pills widget remounts fresh (deselected) next run
+            st.session_state.pills_nonce = st.session_state.get("pills_nonce", 0) + 1
+            _set_pending("mood", mood); st.rerun()
+    with dice_col:
         if st.button("🎲", key="surprise", use_container_width=True, help="무작위 한 장면"):
             _set_pending("surprise"); st.rerun()
 
