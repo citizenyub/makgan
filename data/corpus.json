@@ -1,0 +1,352 @@
+[
+  {
+    "gutenberg_id": 1112,
+    "title": "Romeo and Juliet",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy/romance",
+    "char_count": 143729,
+    "source_url": "https://www.gutenberg.org/ebooks/1112"
+  },
+  {
+    "gutenberg_id": 1129,
+    "title": "Macbeth",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy",
+    "char_count": 107439,
+    "source_url": "https://www.gutenberg.org/ebooks/1129"
+  },
+  {
+    "gutenberg_id": 1135,
+    "title": "King Lear",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy",
+    "char_count": 103134,
+    "source_url": "https://www.gutenberg.org/ebooks/1135"
+  },
+  {
+    "gutenberg_id": 1531,
+    "title": "A Midsummer Night's Dream",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 160502,
+    "source_url": "https://www.gutenberg.org/ebooks/1531"
+  },
+  {
+    "gutenberg_id": 1515,
+    "title": "Much Ado About Nothing",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 125485,
+    "source_url": "https://www.gutenberg.org/ebooks/1515"
+  },
+  {
+    "gutenberg_id": 1533,
+    "title": "The Tempest",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "romance",
+    "char_count": 108636,
+    "source_url": "https://www.gutenberg.org/ebooks/1533"
+  },
+  {
+    "gutenberg_id": 1110,
+    "title": "As You Like It",
+    "author": "William Shakespeare",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 125278,
+    "source_url": "https://www.gutenberg.org/ebooks/1110"
+  },
+  {
+    "gutenberg_id": 2542,
+    "title": "A Doll's House",
+    "author": "Henrik Ibsen",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama; trans. from Norwegian",
+    "char_count": 147390,
+    "source_url": "https://www.gutenberg.org/ebooks/2542"
+  },
+  {
+    "gutenberg_id": 4093,
+    "title": "Hedda Gabler",
+    "author": "Henrik Ibsen",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama",
+    "char_count": 184239,
+    "source_url": "https://www.gutenberg.org/ebooks/4093"
+  },
+  {
+    "gutenberg_id": 8120,
+    "title": "Ghosts",
+    "author": "Henrik Ibsen",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama",
+    "char_count": 1095085,
+    "source_url": "https://www.gutenberg.org/ebooks/8120"
+  },
+  {
+    "gutenberg_id": 1754,
+    "title": "The Seagull",
+    "author": "Anton Chekhov",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama; trans. from Russian",
+    "char_count": 104867,
+    "source_url": "https://www.gutenberg.org/ebooks/1754"
+  },
+  {
+    "gutenberg_id": 7986,
+    "title": "The Cherry Orchard",
+    "author": "Anton Chekhov",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama",
+    "char_count": 391675,
+    "source_url": "https://www.gutenberg.org/ebooks/7986"
+  },
+  {
+    "gutenberg_id": 1755,
+    "title": "Three Sisters",
+    "author": "Anton Chekhov",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama",
+    "char_count": 128494,
+    "source_url": "https://www.gutenberg.org/ebooks/1755"
+  },
+  {
+    "gutenberg_id": 1756,
+    "title": "Uncle Vanya",
+    "author": "Anton Chekhov",
+    "language": "en",
+    "genre": "play",
+    "notes": "drama",
+    "char_count": 91729,
+    "source_url": "https://www.gutenberg.org/ebooks/1756"
+  },
+  {
+    "gutenberg_id": 844,
+    "title": "The Importance of Being Earnest",
+    "author": "Oscar Wilde",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 121169,
+    "source_url": "https://www.gutenberg.org/ebooks/844"
+  },
+  {
+    "gutenberg_id": 854,
+    "title": "An Ideal Husband",
+    "author": "Oscar Wilde",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 132569,
+    "source_url": "https://www.gutenberg.org/ebooks/854"
+  },
+  {
+    "gutenberg_id": 790,
+    "title": "Lady Windermere's Fan",
+    "author": "Oscar Wilde",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 120012,
+    "source_url": "https://www.gutenberg.org/ebooks/790"
+  },
+  {
+    "gutenberg_id": 42704,
+    "title": "Salomé",
+    "author": "Oscar Wilde",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy",
+    "char_count": 73550,
+    "source_url": "https://www.gutenberg.org/ebooks/42704"
+  },
+  {
+    "gutenberg_id": 31,
+    "title": "Oedipus King",
+    "author": "Sophocles",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy; trans.",
+    "char_count": 223570,
+    "source_url": "https://www.gutenberg.org/ebooks/31"
+  },
+  {
+    "gutenberg_id": 27673,
+    "title": "Antigone",
+    "author": "Sophocles",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy; trans.",
+    "char_count": 111747,
+    "source_url": "https://www.gutenberg.org/ebooks/27673"
+  },
+  {
+    "gutenberg_id": 8418,
+    "title": "Medea",
+    "author": "Euripides",
+    "language": "en",
+    "genre": "play",
+    "notes": "tragedy; trans.",
+    "char_count": 173352,
+    "source_url": "https://www.gutenberg.org/ebooks/8418"
+  },
+  {
+    "gutenberg_id": 3825,
+    "title": "Pygmalion",
+    "author": "George Bernard Shaw",
+    "language": "en",
+    "genre": "play",
+    "notes": "comedy",
+    "char_count": 192653,
+    "source_url": "https://www.gutenberg.org/ebooks/3825"
+  },
+  {
+    "gutenberg_id": 4736,
+    "title": "Caesar and Cleopatra",
+    "author": "George Bernard Shaw",
+    "language": "en",
+    "genre": "play",
+    "notes": "history",
+    "char_count": 103149,
+    "source_url": "https://www.gutenberg.org/ebooks/4736"
+  },
+  {
+    "gutenberg_id": 1342,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "language": "en",
+    "genre": "novel",
+    "notes": "romance",
+    "char_count": 743241,
+    "source_url": "https://www.gutenberg.org/ebooks/1342"
+  },
+  {
+    "gutenberg_id": 768,
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "language": "en",
+    "genre": "novel",
+    "notes": "gothic romance",
+    "char_count": 657946,
+    "source_url": "https://www.gutenberg.org/ebooks/768"
+  },
+  {
+    "gutenberg_id": 1260,
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "language": "en",
+    "genre": "novel",
+    "notes": "romance/coming-of-age",
+    "char_count": 1043379,
+    "source_url": "https://www.gutenberg.org/ebooks/1260"
+  },
+  {
+    "gutenberg_id": 98,
+    "title": "A Tale of Two Cities",
+    "author": "Charles Dickens",
+    "language": "en",
+    "genre": "novel",
+    "notes": "historical",
+    "char_count": 773503,
+    "source_url": "https://www.gutenberg.org/ebooks/98"
+  },
+  {
+    "gutenberg_id": 158,
+    "title": "Emma",
+    "author": "Jane Austen",
+    "language": "en",
+    "genre": "novel",
+    "notes": "romance",
+    "char_count": 896910,
+    "source_url": "https://www.gutenberg.org/ebooks/158"
+  },
+  {
+    "gutenberg_id": 2701,
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "language": "en",
+    "genre": "novel",
+    "notes": "adventure",
+    "char_count": 1240865,
+    "source_url": "https://www.gutenberg.org/ebooks/2701"
+  },
+  {
+    "gutenberg_id": 84,
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "language": "en",
+    "genre": "novel",
+    "notes": "gothic",
+    "char_count": 426692,
+    "source_url": "https://www.gutenberg.org/ebooks/84"
+  },
+  {
+    "gutenberg_id": 174,
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "language": "en",
+    "genre": "novel",
+    "notes": "gothic",
+    "char_count": 437835,
+    "source_url": "https://www.gutenberg.org/ebooks/174"
+  },
+  {
+    "gutenberg_id": 43,
+    "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
+    "author": "Robert Louis Stevenson",
+    "language": "en",
+    "genre": "novel",
+    "notes": "gothic",
+    "char_count": 141364,
+    "source_url": "https://www.gutenberg.org/ebooks/43"
+  },
+  {
+    "gutenberg_id": 2554,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoyevsky",
+    "language": "en",
+    "genre": "novel",
+    "notes": "psychological",
+    "char_count": 1157167,
+    "source_url": "https://www.gutenberg.org/ebooks/2554"
+  },
+  {
+    "gutenberg_id": 28054,
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoyevsky",
+    "language": "en",
+    "genre": "novel",
+    "notes": "psychological",
+    "char_count": 1972457,
+    "source_url": "https://www.gutenberg.org/ebooks/28054"
+  },
+  {
+    "gutenberg_id": 1399,
+    "title": "Anna Karenina",
+    "author": "Leo Tolstoy",
+    "language": "en",
+    "genre": "novel",
+    "notes": "tragedy/romance",
+    "char_count": 2004609,
+    "source_url": "https://www.gutenberg.org/ebooks/1399"
+  }
+]
